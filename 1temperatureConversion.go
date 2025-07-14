@@ -8,24 +8,27 @@ import (
 	"strings"
 )
 
-func celciusToFahrenheit(celsius float64) float64 {
+func celciusToFahrenheit(celsius float32) float32 {
 	return (celsius * 9 / 5) + 32
 }
 
-func celciusToReamur(celsius float64) float64 {
+func celciusToReamur(celsius float32) float32 {
 	return celsius * 4 / 5
 }
 
-func validateInput(input string) (float64, error) {
-	celsius, err := strconv.ParseFloat(input, 64)
+func validateInput(input string) (float32, error) {
+	celsius, err := strconv.ParseFloat(input, 32)
 	if err != nil {
 		return 0, fmt.Errorf("input tidak Valid, hanya menerima angka: %v", err)
 	}
-	return celsius, nil
+
+	return float32(celsius), nil
 }
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Println("--- Konverter Suhu ---")
 
 	fmt.Print("masukkan suhu dalam Celsius: ")
 
