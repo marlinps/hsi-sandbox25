@@ -19,6 +19,9 @@ func main() {
 	for i := 1; i < 10; i++ {
 		fmt.Println("Perulangan ke-", i)
 	}
+
+	const phi float32 = 3.14
+	fmt.Println("Phi :", phi)
 }
 
 /* TODO: standart penulisan di Golang menggunakan camelCase
