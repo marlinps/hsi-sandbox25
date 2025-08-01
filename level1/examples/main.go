@@ -2,6 +2,17 @@ package main
 
 import "fmt"
 
+func hitungLuasLingkaran(jariJari float32) float32 { // TODO: tipe data pengembalian ada dibelakang
+	const phi float32 = 3.14
+	var luas float32
+	luas = phi * jariJari * jariJari
+	return luas
+}
+
+func cetakHasilPerhitungan(hasilHitung float32) {
+	fmt.Println("Luas Lingkaran: ", hasilHitung)
+}
+
 func main() {
 	var usiaSaya int = 40
 	// var phi float32 = 3.14
@@ -22,6 +33,11 @@ func main() {
 
 	const phi float32 = 3.14
 	fmt.Println("Phi :", phi)
+
+	//function
+	var jariJari float32 = 17
+	luasL := hitungLuasLingkaran(jariJari)
+	cetakHasilPerhitungan(luasL)
 }
 
 /* TODO: standart penulisan di Golang menggunakan camelCase
