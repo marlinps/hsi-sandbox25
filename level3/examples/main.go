@@ -68,5 +68,4 @@ func main() {
 	// fmt.Println("Nilai dari variable alamatAsli :", alamatAsli)
 	// fmt.Println("Nilai dari variable Pointer(Memory) alamat asli :", pointerAlamat)
 	// fmt.Println("Isi dari variable pointerAlamat :", *pointerAlamat) // TODO: Akan mengembalikan nilai aslinya
-
 }
