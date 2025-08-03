@@ -30,6 +30,8 @@ func main() {
 	fmt.Println("Data index ke-0:", arrayAngka2[0])       // Output: 100
 }
 
-// TODO: Array adalahh struktur data yang memiliki ukuran tetap dan tipe data yang sama.
-// Array dapat diakses menggunakan indeks, dimulai dari 0.
-// Ukuran array ditentukan saat deklarasi dan tidak dapat diubah setelahnya.
+// TODO: Pondasdi Pemahaman Array
+// Penjelasan:
+// 1. Array adalah struktur data yang memiliki ukuran tetap dan tipe data yang sama.
+// 2. Array dapat diakses menggunakan indeks, dimulai dari 0.
+// 3. Ukuran array ditentukan saat deklarasi dan tidak dapat diubah setelahnya.
