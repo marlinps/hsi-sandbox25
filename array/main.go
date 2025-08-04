@@ -30,7 +30,7 @@ func main() {
 	fmt.Println("Data index ke-3:", arrayAngka2[3])       // Output: 100
 }
 
-// TODO: Pondasdi Pemahaman Array
+// TODO: Pondasi Pemahaman Array
 // Penjelasan:
 // 1. Array adalah struktur data yang memiliki ukuran tetap dan tipe data yang sama.
 // 2. Array dapat diakses menggunakan indeks, dimulai dari 0.
