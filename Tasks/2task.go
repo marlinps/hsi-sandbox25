@@ -8,7 +8,7 @@ type DataCuaca struct {
 	kondisi string
 }
 
-func (data *DataCuaca) klasifikasiKondisi() string {
+func (data *DataCuaca) KlasifikasiKondisi() string {
 	if data.Suhu < 18 {
 		return "Dingin"
 	} else if data.Suhu >= 18 && data.Suhu <= 25 {
@@ -18,26 +18,25 @@ func (data *DataCuaca) klasifikasiKondisi() string {
 	}
 }
 
-func (data *DataCuaca) celciusToFahrenheitt(data *DataCuaca) float32 {
+func (data *DataCuaca) CelciusToFahrenheit() float32 {
 	fahrenheit := (data.Suhu * 9 / 5) + 32
 	return fahrenheit
 }
 
-func (data *DataCuaca) celciusToReamurr() float32 {
+func (data *DataCuaca) CelciusToReamur() float32 {
 	reamur := data.Suhu * 4 / 5
 	return reamur
 }
 
 func main() {
 	dataCuaca := DataCuaca{
-		Suhu:    30.0,
-		Lokasi:  "Jakarta",
-		kondisi: "Panas",
+		Suhu:   25.0,
+		Lokasi: "Jakarta",
 	}
 
-	kondisi := dataCuaca.klasifikasiKondisi()
-	fahrenheit := dataCuaca.celciusToFahrenheitt(&dataCuaca)
-	reamur := dataCuaca.celciusToReamurr()
+	kondisi := dataCuaca.KlasifikasiKondisi()
+	fahrenheit := dataCuaca.CelciusToFahrenheit()
+	reamur := dataCuaca.CelciusToReamur()
 
 	println("Lokasi:", dataCuaca.Lokasi)
 	println("Suhu dalam Celcius:", dataCuaca.Suhu)
