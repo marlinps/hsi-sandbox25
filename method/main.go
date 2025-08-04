@@ -17,9 +17,10 @@ func (f FormPendaftaran) MencetakNamaLengkap() {
 	fmt.Println("Nama Lengkap:", f.NamaLengkap)
 }
 
-// method yang bersifat pas by reference, sehingga dapat mengubah data asli
+// TODO: method yang bersifat pas by reference, sehingga dapat mengubah data asli, mwnggunakan pointer receiver (*FormPendaftaran)
 func (f *FormPendaftaran) MerubahUsia(usiaBaru int) {
 	f.Usia = usiaBaru
+	fmt.Println("Usia telah diubah menjadi:", f.Usia)
 }
 
 // fungsi untuk mencetak nama lengkap dari FormPendaftaran
@@ -43,5 +44,4 @@ func main() {
 
 	// method pass by reference
 	pendaftaran1.MerubahUsia(35)
-	fmt.Println("Usia setelah diubah:", pendaftaran1.Usia) // Output: 35
 }
