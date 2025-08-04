@@ -28,6 +28,11 @@ func MencetakNamaLengkap(f FormPendaftaran) {
 	fmt.Println("Nama Lengkap:", f.NamaLengkap)
 }
 
+func MerubahUsia2(f FormPendaftaran, usiaBaru int) {
+	f.Usia = usiaBaru
+	fmt.Println("Usia telah diubah menjadi:", f.Usia)
+}
+
 func main() {
 	pendaftaran1 := FormPendaftaran{
 		NamaLengkap: "John Doe",
@@ -44,4 +49,10 @@ func main() {
 
 	// method pass by reference
 	pendaftaran1.MerubahUsia(35)
+
+	// fungsi untuk merubah usia
+	// MerubahUsia2(pendaftaran1, 35)
+
+	// value usia telah berubah
+	fmt.Println("Usia setelah perubahan:", pendaftaran1.Usia)
 }
