@@ -41,7 +41,7 @@ func main() {
 	// fungsi untuk mencetak nama lengkap
 	MencetakNamaLengkap(pendaftaran1)
 
-	//method pass by reference
+	// method pass by reference
 	pendaftaran1.MerubahUsia(35)
 	fmt.Println("Usia setelah diubah:", pendaftaran1.Usia) // Output: 35
 }
