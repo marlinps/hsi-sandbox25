@@ -57,7 +57,7 @@ func (f FormPendafataranUsiaSenja) ValidasiGender(gender string) bool {
 	return true
 }
 
-// Implementasi fungsi untuk validasi usia dan gender
+// function untuk validasi usia dan	gender
 func ValidasiUsiaForm(fInt FormPendaftaranInterface, usia int) bool {
 	return fInt.ValidasiUsia(usia)
 }
