@@ -2,12 +2,13 @@ package main
 
 import "fmt"
 
-// TODO: Mendefinisikan interface/kontrak berupa method-method yang harus dimiliki oleh Struct
-// TODO: Konsep Interface adalah Polimorpisme, dimana kita dapat menggunakan berbagai jenis struct yang berbeda selama mereka mengimplementasikan nama method dan paramater yang sama dengan logika yang berbeda
+// TODO: Mendefinisikan interface/kontrak berupa method-method yang harus dimiliki oleh Struct, semua struct harus mengimplementasikan method-method ini, kalau tidak maka akan terjadi error
+// TODO: Konsep Interface adalah Polimorfism, dimana kita dapat menggunakan berbagai jenis struct yang berbeda selama mereka mengimplementasikan nama method dan paramater yang sama dengan logika yang berbeda
 // TODO: Memungkinkan untuk membuat method-method yang berstruktur sehingga memeungkinkan kita untuk membuat kode yang lebih fleksibel dan reusable
 
 type FormPendaftaranInterface interface {
 	ValidasiUsia(usia int) bool
+	ValidasiGender(gender string) bool
 }
 
 type FormPendaftaran struct {
@@ -34,38 +35,63 @@ func (f FormPendaftaran) ValidasiUsia(usia int) bool { // harus sama dengan inte
 	return true
 }
 
+func (f FormPendaftaran) ValidasiGender(gender string) bool {
+	if gender != "Laki-laki" && gender != "Perempuan" {
+		return false
+	}
+	return true
+}
+
 // Implementasi untuk struct FormPendaftaran usia senja
 func (f FormPendafataranUsiaSenja) ValidasiUsia(usia int) bool {
 	if usia > 75 {
 		return true
 	}
-
 	return false
 }
 
-// function
+func (f FormPendafataranUsiaSenja) ValidasiGender(gender string) bool {
+	if gender != "Laki-laki" && gender != "Perempuan" {
+		return false
+	}
+	return true
+}
+
+// Implementasi fungsi untuk validasi usia dan gender
 func ValidasiUsiaForm(fInt FormPendaftaranInterface, usia int) bool {
 	return fInt.ValidasiUsia(usia)
 }
 
+func ValidasiGenderForm(fInt FormPendaftaranInterface, gender string) bool {
+	return fInt.ValidasiGender(gender)
+}
+
 func main() {
-	pendaftaran1 := FormPendaftaran{
+	p1 := FormPendaftaran{
 		NamaLengkap: "Budi Santoso",
 		Email:       "email@email.com",
+		Gender:      "Laki-laki",
 		Usia:        80,
 	}
 
-	pendaftaran2 := FormPendafataranUsiaSenja{
+	p2 := FormPendafataranUsiaSenja{
 		NamaLengkap:    "Siti Aminah",
 		Email:          "sitiaminah@email.com",
+		Gender:         "Perempuan",
 		Usia:           80,
 		PenyakitKronis: "Diabetes",
 	}
 
-	apakahUsiaValid := ValidasiUsiaForm(pendaftaran1, pendaftaran1.Usia)
+	apakahUsiaValid := ValidasiUsiaForm(p1, p1.Usia)
 	fmt.Println("Apakah usia valid ?", apakahUsiaValid)
 
-	apakahUsiaValid2 := ValidasiUsiaForm(pendaftaran2, pendaftaran2.Usia)
+	apakahGenderValid := ValidasiGenderForm(p1, p1.Gender)
+	fmt.Println("Apakah gender valid ?", apakahGenderValid)
+
+	apakahUsiaValid2 := ValidasiUsiaForm(p2, p2.Usia)
 	fmt.Println("Apakah usia Senja valid ?", apakahUsiaValid2)
+
+	apakahGenderValid2 := ValidasiGenderForm(p2, p2.Gender)
+	fmt.Println("Apakah gender Senja valid ?", apakahGenderValid2)
 
 }
