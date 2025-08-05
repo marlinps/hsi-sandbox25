@@ -26,7 +26,7 @@ type FormPendafataranUsiaSenja struct {
 	PenyakitKronis string
 }
 
-// Implementasi untuk struct FormPendaftaran reguler
+// Implementasi method untuk struct FormPendaftaran reguler
 func (f FormPendaftaran) ValidasiUsia(usia int) bool { // harus sama dengan interface (nama dan parameter)
 	if usia < 15 || usia > 75 {
 		return false
@@ -42,7 +42,7 @@ func (f FormPendaftaran) ValidasiGender(gender string) bool {
 	return true
 }
 
-// Implementasi untuk struct FormPendaftaran usia senja
+// Implementasi method untuk struct FormPendaftaran usia senja
 func (f FormPendafataranUsiaSenja) ValidasiUsia(usia int) bool {
 	if usia > 75 {
 		return true
