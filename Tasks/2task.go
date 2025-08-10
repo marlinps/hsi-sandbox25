@@ -13,10 +13,24 @@ type DataCuaca struct {
 	kondisi string
 }
 
-func (data *DataCuaca) klasifikasiKondisi() string {
-	if data.Suhu < 18 {
+func (d *DataCuaca) ValidasiLokasi() (bool, error) {
+	if d.Lokasi == "" {
+		return false, fmt.Errorf("Lokasi tidak boleh kosong")
+	}
+
+	for _, c := range d.Lokasi {
+		if c >= '0' && c <= '9' {
+			return false, fmt.Errorf("Data lokasi tidak boleh ada angka: %s", d.Lokasi)
+		}
+	}
+
+	return true, nil
+}
+
+func (d *DataCuaca) KlasifikasiKondisi() string {
+	if d.Suhu < 18 {
 		return "Dingin"
-	} else if data.Suhu >= 18 && data.Suhu <= 25 {
+	} else if d.Suhu >= 18 && d.Suhu <= 25 {
 		return "Hangat"
 	} else {
 		return "Panas"
