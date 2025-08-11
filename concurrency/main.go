@@ -21,10 +21,10 @@ func main() {
 	channel := make(chan bool, 2) // alokasi memory (chan) dan tipe datanya (string, bool atu dll)
 
 	// goROutine Utama
-	go cetakPesan("Nasi Goreng", channel)
+	cetakPesan("Nasi Goreng", channel)
 
 	//goROutine kedua
-	go cetakPesan("Mie Goreng", channel)
+	go cetakPesan("Telur Mata Sapi", channel)
 
 	// Menunggu goROutine selesai
 	// Dengan cara menunggu beberapa milidetik
@@ -35,5 +35,21 @@ func main() {
 /*
  Pesanan 1 -> Waktu proses
  Pesanan 2 -> Waktu proses
- Program pesanan 1 dan 2 berjalan secara bersamaan
+ TODO: Program pesanan 1 dan 2 berjalan secara bersamaan tanpa menunggu satu sama lain. (Concurrency)
+*/
+
+/*
+TODO: Output:
+Memulai pesanan...
+Pesanan ke- 1 : Nasi Goreng
+Pesanan ke- 2 : Nasi Goreng
+Pesanan ke- 3 : Nasi Goreng
+Pesanan ke- 4 : Nasi Goreng
+Pesanan ke- 5 : Nasi Goreng
+Pesanan ke- 1 : Telur Mata Sapi
+Pesanan ke- 2 : Telur Mata Sapi
+
+TODO: Penjelasan output
+meskipun output seolah-olah dicetak berurutan, namun sebenarnya kedua goroutine berjalan secara bersamaan.
+Pesanan "Nasi Goreng" dan "Telur Mata Sapi" dicetak secara bersamaan, dengan masing-masing goroutine mencetak 5 pesan.
 */
