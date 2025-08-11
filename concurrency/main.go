@@ -11,24 +11,25 @@ func cetakPesan(pesanan string, channelGoRoutine chan bool) {
 		time.Sleep(1 * time.Millisecond)
 	}
 
-	channelGoRoutine <- true // mengirim signal bahwa goroutine telah selesai dengan nilai true
+	channelGoRoutine <- true // mengirim data ke channel bahwa goroutine telah selesai dengan nilai true
 }
 
 func main() {
 	fmt.Println("Memulai pesanan...")
 
 	// inisialisasi channel
-	channel := make(chan bool, 2) // alokasi memory (chan) dan tipe datanya (string, bool atu dll)
+	channel := make(chan bool, 2) // alokasi memory make(chan) dan tipe datanya (string, bool atau dll)
 
 	// goROutine Utama
-	cetakPesan("Nasi Goreng", channel)
+	go cetakPesan("Nasi Goreng", channel)
 
-	//goROutine kedua
+	// goROutine kedua
 	go cetakPesan("Telur Mata Sapi", channel)
 
 	// Menunggu goROutine selesai
 	// Dengan cara menunggu beberapa milidetik
 	time.Sleep(5 * time.Millisecond)
+	// Tidak akan mencetak pesan "Selesai" sebelum channel menerima data dan bernilai true
 	fmt.Println("Selesai")
 }
 
