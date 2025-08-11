@@ -1,13 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type RawData struct {
-	data    []int
-	channel chan int
+	data         []int
+	channel      chan int
+	channelError chan error
 }
 
 func hitungData(rd RawData) {
+	if len(rd.data) == 0 {
+		rd.channel <- 0
+		rd.channelError <- errors.New("Deretnya tidak boleh kosong")
+		return
+	}
 	total := 0
 	for _, value := range rd.data {
 		total += value
@@ -23,8 +32,11 @@ func main() {
 	c1 := make(chan int)
 	c2 := make(chan int)
 
-	total1 := RawData{data: angkaGenap, channel: c1}
-	total2 := RawData{data: angkaGanjil, channel: c2}
+	c1Error := make(chan error)
+	c2Error := make(chan error)
+
+	total1 := RawData{data: angkaGenap, channel: c1}  // mungkin berjalan 5 ms
+	total2 := RawData{data: angkaGanjil, channel: c2} // mungkin berjalan 12 ms
 
 	go hitungData(total1)
 	go hitungData(total2)
