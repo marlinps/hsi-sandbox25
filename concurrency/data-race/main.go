@@ -23,5 +23,5 @@ seharusnya 100, inilah dinamakan data-race dimana setiap Go Routine melakukan pr
 TODO: hasilnya terkadang tidak konsisten tergantung CPU dilaptop masing-masing
 TODO: kenapa bisa demikian ? karena go routine berjalan secara bersamaan
 TODO: solusinya dengan TODO: go run --race <namafile.go>
-TODO:
+
 */
