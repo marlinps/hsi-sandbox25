@@ -47,6 +47,6 @@ func main() {
 	fmt.Println("Total Angka Genap:", totalAngkaGenap)
 	fmt.Println("Total Angka Ganjil:", totalAngkaGanjil)
 
-	// Total keseluruhan
+	// TODO: Total keseluruhan
 fmt.Println("Total Keseluruhan:", totalAngkaGenap+totalAngkaGanjil) // harus menunggu kedua goroutine selesai sebelum mencetak total keseluruhan
 }
