@@ -1,4 +1,4 @@
-package main
+package pegawai
 
 import "fmt"
 
@@ -13,7 +13,7 @@ type InformasiPegawai interface {
 }
 
 func (p Pegawai) HitungGajiTahunan() float64 {
-	return p.GajiBulanan * 12
+	return 12 * p.GajiBulanan
 }
 
 func (p Pegawai) TampilkanInformasi() {
