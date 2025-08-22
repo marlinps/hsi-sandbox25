@@ -19,5 +19,5 @@ func (p Pegawai) HitungGajiTahunan() float64 {
 func (p Pegawai) TampilkanInformasi() {
 	fmt.Printf("Nama: %s\n", p.Nama)
 	fmt.Printf("Posisi: %s\n", p.Posisi)
-	fmt.Printf("Gaji Bulanan: %.2f\n", p.GajiBulanan)
+	fmt.Printf("Gaji Bulanan: %.2f\n", p.HitungGajiTahunan())
 }
