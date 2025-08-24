@@ -11,7 +11,9 @@ import (
 	"praktikum-module/calculator"
 
 	// TODO: go get rsc.io/quote
-	"rsc.io/quote" // TODO: Import package dari luar (third-party package), package untuk mendapatkan quote lucu
+	// TODO: Import package dari luar (third-party package), package untuk mendapatkan quote lucu
+
+	"praktikum-module/stringgenerator"
 )
 
 func main() {
@@ -20,6 +22,6 @@ func main() {
 	hasilKurang := calculator.KurangAngka(5, 3)
 	fmt.Println("Hasil Pengurangan:", hasilKurang)
 
-	pesan := quote.Hello()
-	fmt.Println("Pesan dari quote package:", pesan)
+	pesanBaru := stringgenerator.GenerateGreeting("Sari")
+	fmt.Println("Pesan Baru:", pesanBaru)
 }
