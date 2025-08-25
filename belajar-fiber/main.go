@@ -15,11 +15,25 @@ func main() {
 		return c.SendString("Ahlan Wa Sahlan")
 	})
 
-	// Parameter URL didefinisikan (:)
+	// Parameter URL Sample 1 didefinisikan (:p1)
 	app.Get("/api/:p1", func(c *fiber.Ctx) error {
 		// TODO: untuk mendapatkan value dari parameter
 		getParam := c.Params("p1")
 		return c.SendString("Parameter yang dikirimkan adalah : " + getParam)
+	})
+
+	// Parameter URL Sample 1 (Multiple Parameter URL)
+	app.Get("/api/:categoryId/:productId", func(c *fiber.Ctx) error {
+		getParam1 := c.Params("categoryId")
+		getParam2 := c.Params("productId")
+		return c.SendString("Paramater yang dikirimkan adalah Category ID: " + getParam1 + ", Product ID: " + getParam2)
+	})
+
+	// TODO: Parameter URL Sample 3 (Optional Parameter) -> :id (TODO: ?) parameter in the route is optional.
+	app.Get("/api/opsional/:opsionalData?", func(c *fiber.Ctx) error {
+		getParam := c.Params("opsionalData", "Default  Data")
+		return c.SendString("Parameter yang dikirimkan adalah : " + getParam)
+
 	})
 
 	// Reserved PORT
