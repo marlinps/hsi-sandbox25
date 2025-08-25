@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -8,10 +10,18 @@ func main() {
 	// TODO: inisialisasi framework Fiber
 	app := fiber.New()
 
+	// TODO: Middleware (fungsi: Untuk Log Request disini, selain untuk autentifikasi/autorisasi dan sebagainya)
+	app.Use(func(c *fiber.Ctx) error {
+		log.Print("Middleware Berjalan Sebelum ke Routing")
+
+		return c.Next() // TODO: selalu ditulis diakhir, berfungsi untuk meneruskan request ke routing yang dituju
+	})
+
 	// TODO: routing
 	// URL http://localhost:3000/api/
 	// Return "Ahlan Wa Sahlan"
 	app.Get("/api/", func(c *fiber.Ctx) error {
+		log.Print("Routing ke URL /api/") // TODO: mengetest middleware
 		return c.SendString("Ahlan Wa Sahlan")
 	})
 
@@ -49,7 +59,8 @@ func main() {
 		if err := c.BodyParser(BodySample); err != nil {
 			return c.Status(fiber.StatusBadRequest).SendString(err.Error())
 		}
-		return c.JSON(fiber.Map{
+		return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+			//return c.JSON(fiber.Map{
 			"status":  "success",
 			"message": "Data berhasil diterima",
 			"name":    BodySample.Name,
