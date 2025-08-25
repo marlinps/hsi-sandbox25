@@ -36,6 +36,27 @@ func main() {
 
 	})
 
+	// TODO: biasa bodynya berbentuk struct
+	type BodySample struct {
+		Name    string `json:"name"` // TODO: auto mapping
+		Address string `json:"address"`
+	}
+
+	// Handler Post
+	app.Post("/api/info", func(c *fiber.Ctx) error {
+		// TODO: Inisialisasi object baru
+		BodySample := new(BodySample)
+		if err := c.BodyParser(BodySample); err != nil {
+			return c.Status(fiber.StatusBadRequest).SendString(err.Error())
+		}
+		return c.JSON(fiber.Map{
+			"status":  "success",
+			"message": "Data berhasil diterima",
+			"name":    BodySample.Name,
+			"address": BodySample.Address,
+		})
+	})
+
 	// Reserved PORT
 	app.Listen(":3000")
 }
