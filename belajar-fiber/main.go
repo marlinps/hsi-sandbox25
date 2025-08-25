@@ -40,7 +40,7 @@ func main() {
 	})
 
 	// TODO: Parameter URL Sample 3 (Optional Parameter) -> :id (TODO: ?) parameter in the route is optional.
-	app.Get("/api/opsional/:opsionalData?", func(c *fiber.Ctx) error {
+	app.Get("/api2/opsional/:opsionalData?", func(c *fiber.Ctx) error {
 		getParam := c.Params("opsionalData", "Default  Data")
 		return c.SendString("Parameter yang dikirimkan adalah : " + getParam)
 
@@ -59,8 +59,8 @@ func main() {
 		if err := c.BodyParser(BodySample); err != nil {
 			return c.Status(fiber.StatusBadRequest).SendString(err.Error())
 		}
-		return c.Status(fiber.StatusCreated).JSON(fiber.Map{
-			//return c.JSON(fiber.Map{
+		// return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		return c.JSON(fiber.Map{
 			"status":  "success",
 			"message": "Data berhasil diterima",
 			"name":    BodySample.Name,
