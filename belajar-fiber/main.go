@@ -39,6 +39,13 @@ func main() {
 		return c.SendString("Paramater yang dikirimkan adalah Category ID: " + getParam1 + ", Product ID: " + getParam2)
 	})
 
+	// Request:
+
+	// GET http://localhost:3000/api
+
+	// Response:
+	//
+
 	// TODO: Parameter URL Sample 3 (Optional Parameter) -> :id (TODO: ?) parameter in the route is optional.
 	app.Get("/api2/opsional/:opsionalData?", func(c *fiber.Ctx) error {
 		getParam := c.Params("opsionalData", "Default  Data")
