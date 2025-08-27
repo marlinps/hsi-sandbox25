@@ -44,7 +44,6 @@ func main() {
 	// GET http://localhost:3000/api
 
 	// Response:
-	//
 
 	// TODO: Parameter URL Sample 3 (Optional Parameter) -> :id (TODO: ?) parameter in the route is optional.
 	app.Get("/api2/opsional/:opsionalData?", func(c *fiber.Ctx) error {
