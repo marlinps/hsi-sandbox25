@@ -56,7 +56,7 @@ func main() {
 	// Pass by Value, dimana Struct akan dicopy paste
 	bertambahUsia(pesertaStructVariable) //34
 
-	//bertambahUsiaPointer(&pesertaStructVariable)
+	bertambahUsiaPointer(&pesertaStructVariable)
 
 	// Struct aslinya tidak berubah
 	fmt.Println("Usia (Original Value)", pesertaStructVariable.Usia) //33
@@ -68,4 +68,8 @@ func main() {
 	// fmt.Println("Nilai dari variable alamatAsli :", alamatAsli)
 	// fmt.Println("Nilai dari variable Pointer(Memory) alamat asli :", pointerAlamat)
 	// fmt.Println("Isi dari variable pointerAlamat :", *pointerAlamat) // TODO: Akan mengembalikan nilai aslinya
+
+	// TODO: deklarasi pointer dengan new
+	pointerBaru := new(PesertaSandbox) // TODO: akan mengembalikan pointer ke memory struct
+	fmt.Println("Isi dari variable pointerBaru :", pointerBaru)
 }
