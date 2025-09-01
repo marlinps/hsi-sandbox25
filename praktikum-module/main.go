@@ -11,7 +11,7 @@ import (
 	"praktikum-module/calculator"
 
 	// TODO: go get rsc.io/quote
-	// TODO: Import package dari luar (third-party package), package untuk mendapatkan quote lucu
+	// TODO: Import package dari luar (third-party package),package untuk mendapatkan quote lucu
 
 	"praktikum-module/stringgenerator"
 )
