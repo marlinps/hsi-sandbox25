@@ -18,7 +18,7 @@ func seed(db *gorm.DB) {
 	db.Exec("TRUNCATE TABLE pegawais")
 
 	// TODO: Seed your database with initial data
-	pegawais := []pegawai.Pegawai{
+	pg := []pegawai.Pegawai{
 		{Nama: "Purnama", Posisi: "Software Engineer", GajiBulanan: 30000000},
 		{Nama: "Farhani", Posisi: "System Analyst", GajiBulanan: 40000000},
 		{Nama: "Faizah", Posisi: "UI Designer", GajiBulanan: 15000000},
@@ -26,28 +26,28 @@ func seed(db *gorm.DB) {
 		{Nama: "Akmal", Posisi: "Backend Developer", GajiBulanan: 15000000},
 	}
 
-	if err := db.Create(&pegawais).Error; err != nil {
+	if err := db.Create(&pg).Error; err != nil {
 		fmt.Println("Failed to create table:", err)
 	}
 }
 
 func showAllPegawai(db *gorm.DB) {
-	var pegawais []pegawai.Pegawai
-	if err := db.Find(&pegawais).Error; err != nil {
+	var pg []pegawai.Pegawai
+	if err := db.Find(&pg).Error; err != nil {
 		fmt.Println("Failed to show all pegawai:", err)
 	}
-	for _, p := range pegawais {
+	for _, p := range pg {
 		p.TampilkanInformasi()
 	}
 }
 
 func showPegawaiByID(db *gorm.DB, id uint) {
-	var pegawai pegawai.Pegawai
-	if err := db.First(&pegawai, id).Error; err != nil {
+	var pg pegawai.Pegawai
+	if err := db.First(&pg, id).Error; err != nil {
 		fmt.Println("Failed to show pegawai:", err)
 		return
 	}
-	pegawai.TampilkanInformasi()
+	pg.TampilkanInformasi()
 }
 
 func insert(db *gorm.DB, pg pegawai.Pegawai) {
