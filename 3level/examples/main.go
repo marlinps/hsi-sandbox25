@@ -14,7 +14,7 @@ type PesertaSandbox struct {
 // TODO: akan diteruskan sbg pass by value, mengirimkan dengan nilai sehingga struct dibuat baru atau salin (copy)
 func bertambahUsia(peserta PesertaSandbox) {
 	peserta.Usia += 1
-	fmt.Println("Usian peserta setelah melewati function bertambahUsia =", peserta.Usia)
+	fmt.Println("Usia peserta setelah melewati function bertambahUsia =", peserta.Usia)
 }
 
 // TODO: diteruskan sbg pass by reference
@@ -22,7 +22,7 @@ func bertambahUsia(peserta PesertaSandbox) {
 // TODO: sehingga perubahan pada struct akan berpengaruh pada struct aslinya
 func bertambahUsiaPointer(peserta *PesertaSandbox) {
 	peserta.Usia += 1
-	fmt.Println("Usian peserta setelah melewati function bertambahUsia =", peserta.Usia)
+	fmt.Println("Usia peserta setelah melewati function bertambahUsia(Pointer)=", peserta.Usia)
 }
 
 func main() {
@@ -59,7 +59,7 @@ func main() {
 	bertambahUsiaPointer(&pesertaStructVariable)
 
 	// Struct aslinya tidak berubah
-	fmt.Println(pesertaStructVariable.Usia) //33
+	fmt.Println("Usia (Original Value)", pesertaStructVariable.Usia) //33
 
 	// TODO: Pointer
 	// var alamatAsli string = "Duren Sawit Jakarta Timur"
@@ -68,4 +68,8 @@ func main() {
 	// fmt.Println("Nilai dari variable alamatAsli :", alamatAsli)
 	// fmt.Println("Nilai dari variable Pointer(Memory) alamat asli :", pointerAlamat)
 	// fmt.Println("Isi dari variable pointerAlamat :", *pointerAlamat) // TODO: Akan mengembalikan nilai aslinya
+
+	// TODO: deklarasi pointer dengan new
+	pointerBaru := new(PesertaSandbox) // TODO: akan mengembalikan pointer ke memory struct
+	fmt.Println("Isi dari variable pointerBaru :", pointerBaru)
 }

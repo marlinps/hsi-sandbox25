@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 )
-
 type RawData struct {
 	data         []int
 	channel      chan int
