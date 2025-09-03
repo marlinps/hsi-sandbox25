@@ -86,20 +86,19 @@ func main() {
 
 	setup(db)
 
-	fmt.Println("List Pegawai")
-	showAllPegawai(db)
-
 	pegawai := pegawai.Pegawai{Nama: "Johan Budi", Posisi: "Oracle Developer", GajiBulanan: 40000000}
 	insert(db, pegawai)
+	fmt.Println("\nList Pegawai")
+	showAllPegawai(db)
 
 	pegawai = read(db, 1)
 	pegawai.GajiBulanan = 12000000
 	update(db, pegawai)
 
-	fmt.Println("Pegawai by ID")
+	fmt.Println("\nPegawai by ID")
 	showPegawaiByID(db, 1)
 
 	delete(db, 1)
-	fmt.Println("List Pegawai After Delete")
+	fmt.Println("\nList Pegawai After Delete")
 	showAllPegawai(db)
 }
