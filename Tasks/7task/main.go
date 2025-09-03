@@ -3,7 +3,6 @@ package main
 import (
 	"7task/pegawai"
 	"fmt"
-	"log"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -28,14 +27,14 @@ func seed(db *gorm.DB) {
 	}
 
 	if err := db.Create(&pegawais).Error; err != nil {
-		log.Fatal("Failed to create table:", err)
+		fmt.Println("Failed to create table:", err)
 	}
 }
 
 func showAllPegawai(db *gorm.DB) {
 	var pegawais []pegawai.Pegawai
 	if err := db.Find(&pegawais).Error; err != nil {
-		log.Fatal("Failed to show all pegawai:", err)
+		fmt.Println("Failed to show all pegawai:", err)
 	}
 	for _, p := range pegawais {
 		p.TampilkanInformasi()
@@ -45,34 +44,27 @@ func showAllPegawai(db *gorm.DB) {
 func showPegawaiByID(db *gorm.DB, id uint) {
 	var pegawai pegawai.Pegawai
 	if err := db.First(&pegawai, id).Error; err != nil {
-		log.Fatal("Failed to show pegawai:", err)
+		fmt.Println("Failed to show pegawai:", err)
+		return
 	}
 	pegawai.TampilkanInformasi()
 }
 
-func insert(db *gorm.DB, pegawai pegawai.Pegawai) {
-	if err := db.Create(&pegawai).Error; err != nil {
-		log.Fatal("Failed to insert pegawai:", err)
+func insert(db *gorm.DB, pg pegawai.Pegawai) {
+	if err := db.Create(&pg).Error; err != nil {
+		fmt.Println("Failed to insert pegawai:", err)
 	}
 }
 
-func read(db *gorm.DB, id uint) pegawai.Pegawai {
-	var pegawai pegawai.Pegawai
-	if err := db.First(&pegawai, id).Error; err != nil {
-		log.Fatal("Failed to read pegawai:", err)
-	}
-	return pegawai
-}
-
-func update(db *gorm.DB, pegawai pegawai.Pegawai) {
-	if err := db.Updates(&pegawai).Error; err != nil {
-		log.Fatal("Failed to update pegawai:", err)
+func update(db *gorm.DB, pg pegawai.Pegawai) {
+	if err := db.Save(&pg).Error; err != nil {
+		fmt.Println("Failed to update pegawai:", err)
 	}
 }
 
 func delete(db *gorm.DB, id uint) {
 	if err := db.Delete(&pegawai.Pegawai{}, id).Error; err != nil {
-		log.Fatal("Failed to delete pegawai:", err)
+		fmt.Println("Failed to delete pegawai:", err)
 	}
 }
 
@@ -81,7 +73,7 @@ func main() {
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal("Failed to connect database:", err)
+		fmt.Println("Failed to connect database:", err)
 	}
 
 	setup(db)
@@ -92,7 +84,7 @@ func main() {
 	showAllPegawai(db)
 
 	if err := db.First(&p, 1).Error; err != nil {
-		log.Fatal("Failed to find pegawai:", err)
+		fmt.Println("Failed to find pegawai:", err)
 	}
 	p.GajiBulanan = 20000000
 	update(db, p)
