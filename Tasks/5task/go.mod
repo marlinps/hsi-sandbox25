@@ -1,3 +1,3 @@
 module 5task
 
-go 1.18
+go 1.25.0
