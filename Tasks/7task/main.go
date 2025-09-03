@@ -21,10 +21,10 @@ func seed(db *gorm.DB) {
 	// TODO: Seed your database with initial data
 	pegawais := []pegawai.Pegawai{
 		{Nama: "Purnama", Posisi: "Software Engineer", GajiBulanan: 30000000},
-		{Nama: "Farhani", Posisi: "System Analyst", GajiBulanan: 50000000},
-		{Nama: "Faizah", Posisi: "UI Designer", GajiBulanan: 20000000},
+		{Nama: "Farhani", Posisi: "System Analyst", GajiBulanan: 40000000},
+		{Nama: "Faizah", Posisi: "UI Designer", GajiBulanan: 15000000},
 		{Nama: "Ririn", Posisi: "UX Designer", GajiBulanan: 18000000},
-		{Nama: "Akmal", Posisi: "Backend Developer", GajiBulanan: 20000000},
+		{Nama: "Akmal", Posisi: "Backend Developer", GajiBulanan: 15000000},
 	}
 
 	if err := db.Create(&pegawais).Error; err != nil {
@@ -91,14 +91,15 @@ func main() {
 	fmt.Println("\nList Pegawai")
 	showAllPegawai(db)
 
-	p = read(db, 1)
-	p.GajiBulanan = 12000000
+	if err := db.First(&p, 1).Error; err != nil {
+		log.Fatal("Failed to find pegawai:", err)
+	}
+	p.GajiBulanan = 20000000
 	update(db, p)
+	fmt.Println("\nPegawai by First Record")
+	showPegawaiByID(db, p.ID)
 
-	fmt.Println("\nPegawai by ID")
-	showPegawaiByID(db, 1)
-
-	delete(db, 1)
+	delete(db, p.ID)
 	fmt.Println("\nList Pegawai After Delete")
 	showAllPegawai(db)
 }
