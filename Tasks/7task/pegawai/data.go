@@ -3,10 +3,10 @@ package pegawai
 import "fmt"
 
 type Pegawai struct {
-	ID          uint    `gorm:"primaryKey"`
-	Nama        string  `gorm:"size:255"`
-	Posisi      string  `gorm:"size:100"`
-	GajiBulanan float64 `gorm:"type:decimal(10,2)"`
+	ID          uint   `gorm:"primaryKey"`
+	Nama        string `gorm:"size:255"`
+	Posisi      string `gorm:"size:100"`
+	GajiBulanan float64
 }
 
 type InformasiPegawai interface {
