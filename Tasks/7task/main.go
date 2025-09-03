@@ -65,7 +65,7 @@ func read(db *gorm.DB, id uint) pegawai.Pegawai {
 }
 
 func update(db *gorm.DB, pegawai pegawai.Pegawai) {
-	if err := db.Save(&pegawai).Error; err != nil {
+	if err := db.Updates(&pegawai).Error; err != nil {
 		log.Fatal("Failed to update pegawai:", err)
 	}
 }
@@ -86,14 +86,14 @@ func main() {
 
 	setup(db)
 
-	pegawai := pegawai.Pegawai{Nama: "Johan Budi", Posisi: "Oracle Developer", GajiBulanan: 40000000}
-	insert(db, pegawai)
+	p := pegawai.Pegawai{Nama: "Johan Budi", Posisi: "Oracle Developer", GajiBulanan: 40000000}
+	insert(db, p)
 	fmt.Println("\nList Pegawai")
 	showAllPegawai(db)
 
-	pegawai = read(db, 1)
-	pegawai.GajiBulanan = 12000000
-	update(db, pegawai)
+	p = read(db, 1)
+	p.GajiBulanan = 12000000
+	update(db, p)
 
 	fmt.Println("\nPegawai by ID")
 	showPegawaiByID(db, 1)
