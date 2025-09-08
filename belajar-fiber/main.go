@@ -65,6 +65,7 @@ func main() {
 		if err := c.BodyParser(BodySample); err != nil {
 			return c.Status(fiber.StatusBadRequest).SendString(err.Error())
 		}
+
 		// return c.Status(fiber.StatusCreated).JSON(fiber.Map{
 		return c.JSON(fiber.Map{
 			"status":  "success",
