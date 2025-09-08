@@ -32,38 +32,38 @@ func main() {
 	koneksiDb.AutoMigrate(&UkurSuhu{})
 
 	// TODO: 4. Insert Data
-	// fmt.Println("Insert Data Suhu")
-	// newData := UkurSuhu{
-	// 	SuhuCelcius:    130,
-	// 	SuhuFahrenheit: 175,
-	// 	SuhuReamur:     70,
-	// }
+	fmt.Println("Insert Data Suhu")
+	newData := UkurSuhu{
+		SuhuCelcius:    130,
+		SuhuFahrenheit: 175,
+		SuhuReamur:     70,
+	}
 
-	// operasiTambahData := koneksiDb.Create(&newData)
-	// if operasiTambahData.Error != nil {
-	// 	log.Fatal("Gagal menambahkan data:", operasiTambahData.Error.Error())
-	// }
-	// fmt.Println("Data berhasil ditambahkan dengan ID:", newData.ID)
+	operasiTambahData := koneksiDb.Create(&newData)
+	if operasiTambahData.Error != nil {
+		log.Fatal("Gagal menambahkan data:", operasiTambahData.Error.Error())
+	}
+	fmt.Println("Data berhasil ditambahkan dengan ID:", newData.ID)
 
 	// TODO: 5.Read Data
-	// fmt.Println("\nRead Data Suhu")
-	// // Mengggunakakn fungsi First untuk mengambil data pertama
-	// var readData UkurSuhu
-	// operasiBacaData := koneksiDb.First(&readData)
-	// if operasiBacaData.Error != nil {
-	// 	log.Fatal("Gagal membaca data:", operasiBacaData.Error.Error())
-	// }
-	// fmt.Println("Data berhasil dibaca:", readData)
+	fmt.Println("\nRead Data Suhu")
+	// Mengggunakakn fungsi First untuk mengambil data pertama
+	var readData UkurSuhu
+	operasiBacaData := koneksiDb.First(&readData)
+	if operasiBacaData.Error != nil {
+		log.Fatal("Gagal membaca data:", operasiBacaData.Error.Error())
+	}
+	fmt.Println("Data berhasil dibaca:", readData)
 
 	// TODO: 6. Update Data
-	// fmt.Println("\nUpdate Data Suhu")
-	// var updateData UkurSuhu
-	// koneksiDb.First(&updateData, 1) // Mengambil data pertama untuk diupdate
-	// updateData.SuhuCelcius = 50
-	// updateData.SuhuFahrenheit = 122
-	// updateData.SuhuReamur = 40
-	// koneksiDb.Save(&updateData)
-	// fmt.Println("Data berhasil diupdate:", updateData)
+	fmt.Println("\nUpdate Data Suhu")
+	var updateData UkurSuhu
+	koneksiDb.First(&updateData, 1) // Mengambil data pertama untuk diupdate
+	updateData.SuhuCelcius = 50
+	updateData.SuhuFahrenheit = 122
+	updateData.SuhuReamur = 40
+	koneksiDb.Save(&updateData)
+	fmt.Println("Data berhasil diupdate:", updateData)
 
 	// TODO: 7. Delete Data
 	fmt.Println("\nDelete Data Suhu")
