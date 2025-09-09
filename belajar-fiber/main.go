@@ -54,7 +54,7 @@ func main() {
 
 	// TODO: biasa bodynya berbentuk struct
 	type BodySample struct {
-		Name    string `json:"name"` // TODO: auto mapping
+		Name    string `json:"name"` // TODO: auto mapping json key "name" ke struct Name
 		Address string `json:"address"`
 	}
 
