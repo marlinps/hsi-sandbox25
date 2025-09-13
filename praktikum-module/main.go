@@ -24,4 +24,5 @@ func main() {
 
 	pesanBaru := stringgenerator.GenerateGreeting("Sari")
 	fmt.Println("Pesan Baru:", pesanBaru)
+
 }
