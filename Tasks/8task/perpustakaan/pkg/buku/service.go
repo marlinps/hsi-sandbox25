@@ -5,68 +5,45 @@ import (
 	"perpustakaan_app/pkg/entities"
 )
 
-// Kontrak Service
-type BukuService interface {
-	CreateBuku(judul string, penulis string, tahun int) (*entities.Buku, error)
+type BukuRepo interface {
+	InsertBuku(buku *entities.Buku) (*entities.Buku, error)
 	GetAllBuku() ([]entities.Buku, error)
-	GetBukuByID(ID uint) (*entities.Buku, error)
-	UpdateBuku(ID uint, judul string, penulis string, tahun int) (*entities.Buku, error)
-	DeleteBuku(ID uint) error
+	UpdateBuku(buku *entities.Buku) (*entities.Buku, error)
+	DeleteBuku(id uint) error
 }
 
-// Implementasi Service
-type bukuService struct {
-	repo BukuRepository
+type BukuService struct {
+	repo BukuRepo
 }
 
-func NewBukuService(repo BukuRepository) BukuService {
-	return &bukuService{repo: repo}
+func NewBukuService(repo BukuRepo) *BukuService {
+	return &BukuService{
+		repo: repo,
+	}
 }
 
-func (s *bukuService) CreateBuku(judul string, penulis string, tahun int) (*entities.Buku, error) {
-	if judul == "" {
-		return nil, errors.New("judul tidak boleh kosong")
+func (s *BukuService) InsertBuku(buku *entities.Buku) (*entities.Buku, error) {
+	// Validasi sederhana
+	if buku.Judul == "" {
+		return nil, errors.New("judul buku tidak boleh kosong")
 	}
-	if penulis == "" {
-		return nil, errors.New("penulis tidak boleh kosong")
-	}
-
-	buku := &entities.Buku{
-		Judul:   judul,
-		Penulis: penulis,
-		Tahun:   tahun,
-	}
-	return s.repo.CreateBuku(buku)
+	return s.repo.InsertBuku(buku)
 }
 
-func (s *bukuService) GetAllBuku() ([]entities.Buku, error) {
-	return s.repo.ReadBuku()
+func (s *BukuService) GetAllBuku() ([]entities.Buku, error) {
+	return s.repo.GetAllBuku()
 }
 
-func (s *bukuService) GetBukuByID(ID uint) (*entities.Buku, error) {
-	return s.repo.ReadBukuByID(ID)
-}
-
-func (s *bukuService) UpdateBuku(ID uint, judul string, penulis string, tahun int) (*entities.Buku, error) {
-	buku, err := s.repo.ReadBukuByID(ID)
-	if err != nil {
-		return nil, err
+func (s *BukuService) UpdateBuku(buku *entities.Buku) (*entities.Buku, error) {
+	if buku.ID == 0 {
+		return nil, errors.New("ID buku tidak boleh kosong")
 	}
-
-	// Update field jika ada perubahan
-	if judul != "" {
-		buku.Judul = judul
-	}
-	if penulis != "" {
-		buku.Penulis = penulis
-	}
-	if tahun != 0 {
-		buku.Tahun = tahun
-	}
-
 	return s.repo.UpdateBuku(buku)
 }
 
-func (s *bukuService) DeleteBuku(ID uint) error {
-	return s.repo.DeleteBuku(ID)
+func (s *BukuService) DeleteBuku(id uint) error {
+	if id == 0 {
+		return errors.New("ID buku tidak boleh kosong")
+	}
+	return s.repo.DeleteBuku(id)
 }

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+	handler "perpustakaan_app/api/handlers"
 	"perpustakaan_app/api/routes"
 	"perpustakaan_app/pkg/buku"
 	"perpustakaan_app/pkg/entities"
@@ -17,18 +19,21 @@ func main() {
 	if err != nil {
 		panic("Gagal Terhubung ke Database")
 	}
+	// Auto migrate entity
 	db.AutoMigrate(&entities.Buku{})
 
-	// TODO: 2. Inisialisasi Repository
-	bukuRepository := buku.NewBukuRepository(db)
+	// Setup dependency injection
+	repo := buku.NewBukuRepository(db)
+	svc := buku.NewBukuService(repo)
+	h := handler.NewBukuHandler(svc)
 
-	// TODO: 3. Inisialisasi Service
-	bukuService := buku.NewBukuService(bukuRepository)
-
-	// TODO: 4. Inisialisasi Fiber dan Setup Routes
+	// Init Fiber
 	app := fiber.New()
 
+	// Register routes
 	api := app.Group("/api")
-	routes.BukuRoutes(api, bukuService)
-	app.Listen(":3000")
+	routes.BukuRoutes(api, h)
+
+	// Run server
+	log.Fatal(app.Listen(":3000"))
 }

@@ -8,8 +8,7 @@ import (
 
 type BukuRepository interface {
 	CreateBuku(buku *entities.Buku) (*entities.Buku, error)
-	ReadBuku() ([]entities.Buku, error)
-	ReadBukuByID(ID uint) (*entities.Buku, error)
+	GetAllBuku() ([]entities.Buku, error)
 	UpdateBuku(buku *entities.Buku) (*entities.Buku, error)
 	DeleteBuku(ID uint) error
 }
@@ -31,20 +30,12 @@ func (r *bukuRepository) CreateBuku(buku *entities.Buku) (*entities.Buku, error)
 	return buku, nil
 }
 
-func (r *bukuRepository) ReadBuku() ([]entities.Buku, error) {
+func (r *bukuRepository) GetAllBuku() ([]entities.Buku, error) {
 	var bukus []entities.Buku
 	if err := r.db.Find(&bukus).Error; err != nil {
 		return nil, err
 	}
 	return bukus, nil
-}
-
-func (r *bukuRepository) ReadBukuByID(ID uint) (*entities.Buku, error) {
-	var buku entities.Buku
-	if err := r.db.First(&buku, ID).Error; err != nil {
-		return nil, err
-	}
-	return &buku, nil
 }
 
 func (r *bukuRepository) UpdateBuku(buku *entities.Buku) (*entities.Buku, error) {
