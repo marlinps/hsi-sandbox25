@@ -14,7 +14,6 @@ type Peminjam struct {
 	BukuDiPinjam        []Buku
 }
 
-// Hook sebelum create
 func (p *Peminjam) BeforeCreate(tx *gorm.DB) (err error) {
 	if p.TanggalPeminjaman.IsZero() {
 		p.TanggalPeminjaman = time.Now()
