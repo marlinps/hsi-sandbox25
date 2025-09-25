@@ -8,9 +8,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func BukuRoutes(api fiber.Router, bukuService *buku.BukuService) {
-	api.Get("/bukus", handlers.GetBukus(bukuService))
-	api.Post("/bukus", handlers.CreateBuku(bukuService))
-	api.Put("/bukus/:id", handlers.UpdateBuku(bukuService))
-	api.Delete("/bukus/:id", handlers.DeleteBuku(bukuService))
+func BukuRoutes(api fiber.Router, bukuService buku.BukuService) {
+	api.Get("/buku", handlers.GetBukus(bukuService))
+	api.Post("/buku", handlers.CreateBuku(bukuService))
+	api.Put("/buku/:id", handlers.UpdateBuku(bukuService))
+	api.Delete("/buku/:id", handlers.DeleteBuku(bukuService))
 }

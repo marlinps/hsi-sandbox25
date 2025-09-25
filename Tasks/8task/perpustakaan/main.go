@@ -2,13 +2,18 @@ package main
 
 import (
 	"log"
-	handler "perpustakaan_app/api/handlers"
+
 	"perpustakaan_app/api/routes"
+
 	"perpustakaan_app/pkg/buku"
+	"perpustakaan_app/pkg/peminjam"
+
 	"perpustakaan_app/pkg/entities"
 
 	"github.com/gofiber/fiber/v2"
+
 	"gorm.io/driver/mysql"
+
 	"gorm.io/gorm"
 )
 
@@ -21,18 +26,22 @@ func main() {
 	}
 	// Auto migrate entity
 	db.AutoMigrate(&entities.Buku{})
+	db.AutoMigrate(&entities.Peminjam{})
 
 	// Setup dependency injection
-	repo := buku.NewBukuRepository(db)
-	svc := buku.NewBukuService(repo)
-	h := handler.NewBukuHandler(svc)
+	bukuRepository := buku.NewBukuRepository(db)
+	peminjamRepository := peminjam.NewPeminjamRepository(db)
+
+	bukuService := buku.NewBukuService(bukuRepository)
+	peminjamService := peminjam.NewPeminjamService(peminjamRepository)
 
 	// Init Fiber
 	app := fiber.New()
 
 	// Register routes
 	api := app.Group("/api")
-	routes.BukuRoutes(api, h)
+	routes.BukuRoutes(api, bukuService)
+	routes.PeminjamRoutes(api, peminjamService)
 
 	// Run server
 	log.Fatal(app.Listen(":3000"))
