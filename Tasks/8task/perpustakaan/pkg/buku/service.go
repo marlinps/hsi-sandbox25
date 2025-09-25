@@ -7,7 +7,7 @@ import (
 
 type BukuService interface {
 	InsertBuku(buku *entities.Buku) (*entities.Buku, error)
-	FetchBukus() ([]entities.Buku, error)
+	FetchBuku() ([]entities.Buku, error)
 	UpdateBuku(buku *entities.Buku) (*entities.Buku, error)
 	RemoveBuku(id uint) error
 }
@@ -29,7 +29,7 @@ func (s *bukuService) InsertBuku(buku *entities.Buku) (*entities.Buku, error) {
 	return s.bukuRepository.CreateBuku(buku)
 }
 
-func (s *bukuService) FetchBukus() ([]entities.Buku, error) {
+func (s *bukuService) FetchBuku() ([]entities.Buku, error) {
 	return s.bukuRepository.ReadBuku()
 }
 
