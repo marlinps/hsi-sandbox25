@@ -5,44 +5,44 @@ import (
 	"perpustakaan_app/pkg/entities"
 )
 
-type BukuRepo interface {
+type BukuService interface {
 	InsertBuku(buku *entities.Buku) (*entities.Buku, error)
-	GetAllBuku() ([]entities.Buku, error)
+	FetchBukus() ([]entities.Buku, error)
 	UpdateBuku(buku *entities.Buku) (*entities.Buku, error)
-	DeleteBuku(id uint) error
+	RemoveBuku(id uint) error
 }
 
-type BukuService struct {
-	repo BukuRepo
+type bukuService struct {
+	bukuRepository BukuRepository
 }
 
-func NewBukuService(repo BukuRepo) *BukuService {
-	return &BukuService{
-		repo: repo,
+func NewBukuService(b BukuRepository) BukuService {
+	return &bukuService{
+		bukuRepository: b,
 	}
 }
 
-func (s *BukuService) InsertBuku(buku *entities.Buku) (*entities.Buku, error) {
+func (s *bukuService) InsertBuku(buku *entities.Buku) (*entities.Buku, error) {
 	if buku.Judul == "" {
 		return nil, errors.New("judul buku tidak boleh kosong")
 	}
-	return s.repo.InsertBuku(buku)
+	return s.bukuRepository.CreateBuku(buku)
 }
 
-func (s *BukuService) GetAllBuku() ([]entities.Buku, error) {
-	return s.repo.GetAllBuku()
+func (s *bukuService) FetchBukus() ([]entities.Buku, error) {
+	return s.bukuRepository.ReadBuku()
 }
 
-func (s *BukuService) UpdateBuku(buku *entities.Buku) (*entities.Buku, error) {
+func (s *bukuService) UpdateBuku(buku *entities.Buku) (*entities.Buku, error) {
 	if buku.ID == 0 {
 		return nil, errors.New("ID buku tidak boleh kosong")
 	}
-	return s.repo.UpdateBuku(buku)
+	return s.bukuRepository.UpdateBuku(buku)
 }
 
-func (s *BukuService) DeleteBuku(id uint) error {
+func (s *bukuService) RemoveBuku(id uint) error {
 	if id == 0 {
 		return errors.New("ID buku tidak boleh kosong")
 	}
-	return s.repo.DeleteBuku(id)
+	return s.bukuRepository.DeleteBuku(id)
 }
