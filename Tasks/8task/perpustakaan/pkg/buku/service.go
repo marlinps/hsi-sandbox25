@@ -23,7 +23,6 @@ func NewBukuService(repo BukuRepo) *BukuService {
 }
 
 func (s *BukuService) InsertBuku(buku *entities.Buku) (*entities.Buku, error) {
-	// Validasi sederhana
 	if buku.Judul == "" {
 		return nil, errors.New("judul buku tidak boleh kosong")
 	}
