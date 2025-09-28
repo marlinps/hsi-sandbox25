@@ -1,7 +1,7 @@
 /* TODO: Notes
 main.go
 Entry point dari aplikasi kita
-Special Package dari Go
+Special Package dari Golang
 */
 
 package main
