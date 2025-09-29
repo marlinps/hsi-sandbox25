@@ -27,7 +27,6 @@ func LoginHandler(service *user.UserService) fiber.Handler {
 
 		// TODO: 2. Mengembalikan response ke user/client
 		return c.JSON(fiber.Map{
-			"message":      "Login successful",
 			"access_token": result,
 		})
 	}

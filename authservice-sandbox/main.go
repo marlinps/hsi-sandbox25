@@ -22,8 +22,8 @@ func main() {
 
 	// TODO: 2. Inisialisasi repository, service, dan handler
 	userRepo := user.NewUserRepository(db)
-	JWTGenerator := adapter.NewJWTGenerator()
-	userService := user.NewUserService(userRepo, JWTGenerator)
+	jwtGenerator := adapter.NewJWTGenerator()
+	userService := user.NewUserService(userRepo, jwtGenerator)
 
 	// TODO: 3.Entry point aplikasi (misal: server HTTP)
 	app := fiber.New()
