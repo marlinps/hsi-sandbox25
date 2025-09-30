@@ -2,12 +2,17 @@ package main
 
 import (
 	"authservice-sandbox/api/adapter"
+
 	"authservice-sandbox/api/routes"
+
 	"authservice-sandbox/pkg/entities"
+
 	"authservice-sandbox/pkg/user"
 
 	"github.com/gofiber/fiber/v2"
+
 	"gorm.io/driver/mysql"
+
 	"gorm.io/gorm"
 )
 
