@@ -32,5 +32,4 @@ func main() {
 
 	// TODO: 4. Menjalankan server
 	app.Listen(":8080")
-
 }

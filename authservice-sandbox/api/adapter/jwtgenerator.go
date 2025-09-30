@@ -47,6 +47,5 @@ func (j *JWTGenerator) ValidateToken(token string) (string, error) {
 		username := claims["username"].(string)
 		return username, nil
 	}
-
 	return "", jwt.ErrSignatureInvalid
 }
