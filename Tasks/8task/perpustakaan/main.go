@@ -25,6 +25,7 @@ func main() {
 	if err != nil {
 		panic("Gagal Terhubung ke Database")
 	}
+
 	// Auto migrate entity
 	db.AutoMigrate(&entities.Buku{})
 	db.AutoMigrate(&entities.Peminjam{})
