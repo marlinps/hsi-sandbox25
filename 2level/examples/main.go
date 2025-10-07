@@ -27,24 +27,21 @@ func kalkulasiPembagian(pembilang, pembagi int) (int, int, error) {
 
 func main() {
 	// Exampleof successfull division
-	result, err := divide(10, 2)
-	if err != nil {
+	if result, err := divide(10, 2); err != nil {
 		fmt.Println("Pesan Error: ", err)
 	} else {
 		fmt.Println("Hasil pembagian 10/2 =", result)
 	}
 
 	// Example of division by zero
-	result, err = divide(10, 0)
-	if err != nil {
+	if result, err := divide(10, 0); err != nil {
 		fmt.Println("Error: ", err)
 	} else {
 		fmt.Println("Hasil pembagian 10/0 =", result)
 	}
 
 	// kembalian dengan 3 nilai
-	hasil, sisa, err := kalkulasiPembagian(10, 2)
-	if err != nil {
+	if hasil, sisa, err := kalkulasiPembagian(10, 2); err != nil {
 		fmt.Println("Pesan Error: ", err)
 	} else {
 		fmt.Println("Hasil pembagian 10/2 =", hasil, "dengan sisa =", sisa)
@@ -53,4 +50,12 @@ func main() {
 
 /* TODO: Notes
 - Di Golang kita harus mengecek error kembalian dari awal sesuai dengan error handling yang telah kita buat
+*/
+
+/* TODO: short statement in if
+if <statement>; <kondisi> {
+	// blok if
+} else {
+	// blok else
+}
 */
