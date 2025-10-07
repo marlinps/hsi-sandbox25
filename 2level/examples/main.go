@@ -11,7 +11,6 @@ func divide(a, b float32) (float32, error) {
 	if b == 0 {
 		return 0, errors.New("cannot divide by zero") // error handling errors.New
 	}
-
 	return a / b, nil
 }
 
