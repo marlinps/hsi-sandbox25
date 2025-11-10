@@ -41,7 +41,7 @@ func main() {
 
 	// Request:
 
-	// GET http://localhost:3000/api
+	//gitGET http://localhost:3000/api
 
 	// Response:
 
