@@ -10,7 +10,7 @@ func main() {
 	// TODO: inisialisasi framework Fiber
 	app := fiber.New()
 
-	// TODO: Middleware (fungsi: Untuk Log Request disini, selain untuk autentifikasi/autorisasi dan sebagainya)
+	// TODO: Middleware (fungsi: Untuk Log Request disini,selain untuk autentifikasi/autorisasi dan sebagainya)
 	app.Use(func(c *fiber.Ctx) error {
 		log.Print("Middleware Berjalan Sebelum ke Routing")
 
