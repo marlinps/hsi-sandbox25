@@ -8,7 +8,7 @@ import (
 type Peminjam struct {
 	gorm.Model
 	TanggalPeminjaman   time.Time
-	TanggalPengembalian time.Time //dihitung berdasarkan tanggal peminjaman + 7 hari
+	TanggalPengembalian time.Time // dihitung berdasarkan tanggal peminjaman + 7 hari
 	NamaPeminjam        string
 	BukuDiPinjam        []Buku
 }
