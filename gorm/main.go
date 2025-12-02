@@ -45,9 +45,9 @@ func main() {
 	}
 	fmt.Println("Data berhasil ditambahkan dengan ID:", newData.ID)
 
-	// TODO: 5.Read Data
+	// TODO: 5. Read Data
 	fmt.Println("\nRead Data Suhu")
-	// Mengggunakakn fungsi First untuk mengambil data pertama
+	// TODO: Mengggunakakn fungsi First untuk mengambil data pertama
 	var readData UkurSuhu
 	operasiBacaData := koneksiDb.First(&readData)
 	if operasiBacaData.Error != nil {
