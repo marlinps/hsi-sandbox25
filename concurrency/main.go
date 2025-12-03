@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 )
+
 type RawData struct {
 	data         []int
 	channel      chan int
@@ -21,7 +22,7 @@ func hitungData(rd RawData) {
 		total += value
 	}
 
-	rd.channel <- total // Send the total to the channel
+	rd.channel <- total // TODO: Send the total to the channel
 }
 
 func main() {
@@ -47,5 +48,5 @@ func main() {
 	fmt.Println("Total Angka Ganjil:", totalAngkaGanjil)
 
 	// TODO: Total keseluruhan
-fmt.Println("Total Keseluruhan:", totalAngkaGenap+totalAngkaGanjil) // harus menunggu kedua goroutine selesai sebelum mencetak total keseluruhan
+	fmt.Println("Total Keseluruhan:", totalAngkaGenap+totalAngkaGanjil) // harus menunggu kedua goroutine selesai sebelum mencetak total keseluruhan
 }
